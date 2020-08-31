@@ -3,7 +3,34 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  
+  def new
+    @user = User.new
+  end
+  
+  def create
+    user = User.new(request_params)
+    check_mail(user.email)
+    begin
+      user.role = 'standard'
+      user.save!
+      redirect_to new_user_session_path,
+      alert: 'dang ki thanh cong'
+    rescue => exception
+      redirect_to new_user_registrationpath,
+      alert:"#{exception}"
+    end
+  end
+  
+  def request_params
+    params.require(:user)
+          .permit(:username, :email, :password, :password_confirmation)
+           
+  end 
+  def check_mail(email)
+    user = User.find_by(email: email)
+    return true if user.nil?
+  end
   # GET /resource/sign_up
   # def new
   #   super
