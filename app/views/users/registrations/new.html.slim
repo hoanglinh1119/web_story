@@ -1,0 +1,25 @@
+= javascript_pack_tag "authen" 
+body.text-center
+  h2 Sign up
+  .form-signin
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| 
+      = render "users/shared/error_messages", resource: resource 
+      
+  
+      = f.label :username, class: 'sr-only'
+      
+      = f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control', placeholder: 'username'
+
+    
+      = f.label :email, class: 'sr-only'
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'email'
+
+      = f.label :password, class: 'sr-only'
+      = f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'password'
+
+      = f.label :password_confirmation, class: 'sr-only'
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'confim password'
+
+      =f.submit "Sign up", class: 'btn btn-lg btn-primary btn-block'
+
+  = render "users/shared/links" 

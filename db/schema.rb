@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_074557) do
+ActiveRecord::Schema.define(version: 2020_09_07_024958) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -71,7 +71,8 @@ ActiveRecord::Schema.define(version: 2020_09_01_074557) do
     t.datetime "public_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "avatar", limit: 3000
+    t.string "title"
+    t.string "hashtag"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

@@ -20,6 +20,9 @@ class Users::PasswordsController < Devise::PasswordsController
   # def update
   #   super
   # end
+  # def change_password
+  #   @user = User.new
+  # end
 
   # protected
 

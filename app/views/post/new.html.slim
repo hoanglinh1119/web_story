@@ -1,0 +1,13 @@
+body.text-center
+  h2 Sign up
+  .form-signin
+    = form_for @post do |f| 
+    =f.label :avatar
+    =f.file_field :avatar
+
+    = f.label :username, class: 'sr-only'
+    = f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control', placeholder: 'username'
+
+    =f.submit
+  
+

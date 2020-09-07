@@ -1,7 +1,8 @@
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
-require("channels")
+require("channels") // ActionCable
+require("bootstrap")
 import '../stylesheets/application.scss'
 import "@fortawesome/fontawesome-free/js/all";
 // BEGIN: Import fontawesome svg

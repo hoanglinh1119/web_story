@@ -1,0 +1,29 @@
+
+.container.emp-profile
+  .row
+    .col-md-4
+      .profile-img
+        img src="#{url_for(@user.avatar)}"
+  .row
+    .col-md-8
+      #myTabContent.tab-content.profile-tab 
+        #home.tab-pane.fade.show.active role="tabpanel" aria-labelledby="home-tab"
+          .row
+            .col-md-6
+              label
+                | User Name
+            .col-md-6
+              p = @user.username
+          .row
+            .col-md-6
+              label
+                | Email
+            .col-md-6
+              p = @user.email
+          .row    
+          .col-md-4
+            button.btn.btn-lg = link_to  "change profile", edit_user_registration_path
+          .col-md-4
+            button.btn.btn-lg = link_to  "change password", change_password_path
+                          
+                              
