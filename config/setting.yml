@@ -1,0 +1,5 @@
+images:
+  default_avatar: https://hangkhongmy.vn/wp-content/uploads/2019/12/meo-chup-anh-dep-khi-du-lich-1.png&size=%{size}
+  sizes:
+    avatar: 80
+    avatar_medium: 120

@@ -12,17 +12,27 @@ main role="main"
 
   .container
     .row
-      .col-md-4
-        h2 Heading
-        p
-          | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. 
-        p 
-          a.btn.btn-secondary href="#" role="button" View details »
-          button.btn.btn-primary
-            a like
-            i.fa.fa-thumbs-up
-          button.btn.btn-danger
-            a bookmark
-            i.fa.fa-heart aria-hidden="true"
-    <hr>
-
+      - @post.each do |post|
+        .col-md-4
+          h2 =post.title
+          - if post.cover_image.attached?
+            = image_tag  post.cover_image, heigh:"300px", width:"350px" 
+          p =post.content
+          = link_to 'View details »',post , class: 'btn btn-secondary'
+          
+          = link_to like_index_path(post.id), method: :post,class: 'btn btn-primary'do
+              | like
+              i.fa.fa-thumbs-up
+              i =post.id
+          = link_to book_mark_index_path(post.id), method: :post, class: 'btn btn-danger' do 
+              | bookmark 
+              i.fa.fa-heart
+              i =post.id
+          / - @comment_list.each do |comment|
+          /   p =comment.content
+          /   p =comment.user_id.username
+          = form_for @comment, url:post_comment_index_path(post_id: post.id), method: :post do |f| 
+            .form-group
+              = f.text_field :content, autofocus: true, autocomplete: "content", class: 'form-control input-md'
+                br
+              =f.submit "comment", class: 'btn btn-primary'    

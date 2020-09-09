@@ -1,12 +1,24 @@
 class Post < ApplicationRecord
-  enum status_post: {disactive: 0,confirm: 1, active: 2}
-  has_one_attached :avatar
+  enum status_active: {disactive: 0,confirm: 1, active: 2}
+  has_one_attached :cover_image
+  has_many :likes
+  has_many :users, through: :likes
+  has_many :bookmarks
+  has_many :users , through: :bookmarks
+  has_many :comments
+  has_many :users, through: :comments
   validates :title , presence: true
-  validates :status_active , presence: true, inclusion: {in:status_posts.keys} 
-  
-  def avatar_image(size = Settings.images.sizes.avatar)
-    return format(Settings.images.default_avatar, size: size) unless avatar.attached?
+  validates :status_active , presence: true, inclusion: {in:status_actives.keys} 
 
-    avatar.variant(resize: "#{size}x#{size}").processed
-  end
+  # def cover_image_file
+  #   if cover_image.attached?
+  #     return cover_image 
+  #   else
+  #     return cover_image:'https://hangkhongmy.vn/wp-content/uploads/2019/12/meo-chup-anh-dep-khi-du-lich-1.png'
+  #   end
+  # end
+
+  # def cover_image_file
+  #   return cover_image if cover_image.attached?
+  # end
 end

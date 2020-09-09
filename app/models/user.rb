@@ -5,6 +5,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   enum role: {standard: 0 , adminnistrator: 1}
+  has_many :likes
+  has_many :posts, through: :likes
+  has_many :bookmarks
+  has_many :posts, through: :bookmarks
+  has_many :comments
+  has_many :posts , through: :comments
   validates :username, presence: true, length: {in:6..20}
   validates :password, presence: true, confirmation: true,
                       length: {within: 6..40},

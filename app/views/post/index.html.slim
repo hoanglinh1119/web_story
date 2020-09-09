@@ -1,0 +1,19 @@
+.container
+  .row
+    - @post.each do |post|
+      .col-md-4
+      
+        h2 =post.title
+        p =post.content
+        - if post.cover_image.attached?
+          = image_tag  post.cover_image, heigh:"300px", width:"350px" 
+        p 
+          = link_to 'View details »',post , class: 'btn btn-secondary' 
+          button.btn.btn-primary
+            a like
+            i.fa.fa-thumbs-up
+          button.btn.btn-danger
+            a bookmark
+            i.fa.fa-heart aria-hidden="true"
+      
+   

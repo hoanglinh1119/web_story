@@ -1,0 +1,11 @@
+
+form.form-horizontal
+legend PRODUCTS
+
+  = form_for (@post, url:post_index_path) do |f| 
+    .form-group
+      = f.label :avatar, class: 'col-md-4 control-label'
+      .col-md-4
+        = f.file_field :avatar, autofocus: true, autocomplete: "avatar", class: 'form-control input-md'
+          br
+      =f.submit "Sign up", class: 'btn btn-lg btn-primary btn-block'
