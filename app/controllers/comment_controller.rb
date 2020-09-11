@@ -7,8 +7,8 @@ class CommentController < ApplicationController
     comment.user_id = current_user.id
     comment.save!
     # @comment = Comment.users&.find_by()
-    redirect_to root_path,
-    alert: 'comment ok baby'
+    # redirect_to root_path,
+    # alert: 'comment ok baby'
   end
   
   def configure_comment_params

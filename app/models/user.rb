@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   enum role: {standard: 0 , adminnistrator: 1}
+  has_many :posts
   has_many :likes
   has_many :posts, through: :likes
   has_many :bookmarks

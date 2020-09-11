@@ -1,8 +1,11 @@
 class PostController < ApplicationController
+  before_action :authenticate_user!
   before_action :configure_create_params, only: [:create]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :admin_confirm]
+  layout 'page'
   def index
     @post = Post.all
+    @comment =Comment.new
   end
 
   def new
@@ -44,6 +47,7 @@ class PostController < ApplicationController
   end
   
   def show;
+    @comment = Comment.new
   end
 
   def destroy
@@ -60,6 +64,7 @@ class PostController < ApplicationController
   def set_post
     @post =Post.find(params[:id])
   end
+  
 
   def configure_create_params
     params.require(:post).permit(:title, :content, :cover_image)

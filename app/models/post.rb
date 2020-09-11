@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   enum status_active: {disactive: 0,confirm: 1, active: 2}
   has_one_attached :cover_image
+  belongs_to :user
   has_many :likes
   has_many :users, through: :likes
   has_many :bookmarks

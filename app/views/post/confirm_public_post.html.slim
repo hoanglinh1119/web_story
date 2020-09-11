@@ -9,10 +9,8 @@
           = image_tag  post.cover_image, heigh:"300px", width:"350px" 
         p 
           a.btn.btn-secondary href="#" role="button" View details »
-          button.btn.btn-primary
-            a like
-            i.fa.fa-thumbs-up
-          button.btn.btn-danger
-            a bookmark
-            i.fa.fa-heart aria-hidden="true"
+          = link_to like_index_path(post.id), method: :post,class: 'btn btn-primary'do
+              | Agree
+          = link_to book_mark_index_path(post.id), method: :post, class: 'btn btn-danger' do 
+              | Refuse
       

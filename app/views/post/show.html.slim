@@ -1,25 +1,75 @@
-.container.emp-profile
-  .row
-    .col-md-4
-      .profile-img
-      - if @post.cover_image.attached?
-        = image_tag  @post.cover_image, heigh:"300px", width:"350px" 
-  .row
-    .col-md-8
-      #myTabContent.tab-content.profile-tab 
-        #home.tab-pane.fade.show.active role="tabpanel" aria-labelledby="home-tab"
-          .row
-            .col-md-2
-              label
-                | content
-            .col-md-3
-              p = @post.content
-          .row
-            .col-md-2
-              label
-                | create at
-            .col-md-3
-              p = @post.created_at
-          .row     
-          .col-md-4
-            button.btn.btn-lg = link_to  "Home", root_path
+/ .container.emp-profile
+/   .row
+/     .col-md-4
+/       .profile-img
+/       - if @post.cover_image.attached?
+/         = image_tag  @post.cover_image, heigh:"300px", width:"350px" 
+/   .row
+/     .col-md-8
+/       #myTabContent.tab-content.profile-tab 
+/         #home.tab-pane.fade.show.active role="tabpanel" aria-labelledby="home-tab"
+/           .row
+/             .col-md-2
+/               label
+/                 | content
+/             .col-md-3
+/               p = @post.content
+/           .row
+/             .col-md-2
+/               label
+/                 | create at
+/             .col-md-3
+/               p = @post.created_at
+/             .col-md-3
+/               p = @post.user.username
+/             = image_tag @post.user.avatar, heigh:"100px", width:"100px"
+/           .row     
+/           .col-md-4
+/             button.btn.btn-lg = link_to  "Home", root_path
+.ftco-section
+  .container  
+   .row.px-md-4  
+      .col-md-12
+          .blog-entry.ftco-animate.d-md-flex.fadeInUp.ftco-animated
+            - if @post.cover_image.attached?
+              = image_tag  @post.cover_image, class:'img img-2' 
+              .text.text-2.pl-md-4
+                h3.mb-2
+                  a = @post.title
+                p = @post.content
+                .meta-wrap
+                  p.meta
+                    span
+                      .i.fa.fa-calendar
+                      | created_at :
+                      = @post.created_at
+                    br
+                    span
+                      i.fa.fa-user
+                      | author :
+                      = @post.user.username
+                    br
+                    span
+                      i.fa.fa-comment
+                      | comment : 
+                      = @post.comments.count
+                    
+                p.mb-4 
+                = link_to like_index_path(@post.id), method: :post,class: 'btn btn-primary'do
+                  | like
+                  i.fa.fa-thumbs-up
+                  i = @post.likes.count
+                = link_to book_mark_index_path(@post.id), method: :post, class: 'btn btn-danger' do 
+                  | bookmark 
+                  i.fa.fa-heart
+                  i = @post.bookmarks.count
+                  / - @comment_list.each do |comment|
+                  /   p =comment.content
+                  /   p =comment.user_id.username
+
+                = form_for @comment, url:post_comment_index_path(post_id: @post.id), method: :post do |f| 
+                  .form-group
+                    = f.text_field :content, autofocus: true, autocomplete: "content", class: 'form-control input-md-3'
+                      br
+                    =f.submit "comment", class: 'btn btn-primary'  
+                    

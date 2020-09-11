@@ -1,19 +1,74 @@
-.container
-  .row
+/ = javascript_pack_tag "home_page"
+/ .container
+/   .row
+/     - @post.each do |post|
+/       .col-md-4
+      
+/         h2 = post.user.username
+/         - if post.cover_image.attached?
+/           = image_tag  post.cover_image, class: 'img img-2' 
+/         p  =post.title
+        
+/         p 
+/           = link_to 'View details »',post , class: 'btn btn-secondary' 
+/           button.btn.btn-primary
+/             a like
+/             i.fa.fa-thumbs-up
+/           button.btn.btn-danger
+/             a bookmark
+/             i.fa.fa-heart aria-hidden="true"
+.ftco-section
+  .container  
+   .row.px-md-4  
     - @post.each do |post|
-      .col-md-4
+      .col-md-12
+          .blog-entry.ftco-animate.d-md-flex.fadeInUp.ftco-animated
+            - if post.cover_image.attached?
+              = image_tag  post.cover_image, class:'img img-2' 
+              .text.text-2.pl-md-4
+                h3.mb-2
+                  a = post.title
+                .meta-wrap
+                  p.meta
+                    span
+                      .i.fa.fa-calendar
+                      | created_at :
+                      = post.created_at
+                    br
+                    span
+                      i.fa.fa-user
+                      | author :
+                      = post.user.username
+                    br
+                    span
+                      i.fa.fa-comment
+                      | comment : 
+                      = post.comments.count
+                    
+                p.mb-4 
+                
+              
+                = link_to 'View details »',post , class: 'btn btn-secondary'
+                = link_to like_index_path(post.id), method: :post,class: 'btn btn-primary'do
+                  | like
+                  i.fa.fa-thumbs-up
+                  i = post.likes.count
+                = link_to book_mark_index_path(post.id), method: :post, class: 'btn btn-danger' do 
+                  | bookmark 
+                  i.fa.fa-heart
+                  i = post.bookmarks.count
+                  / - @comment_list.each do |comment|
+                  /   p =comment.content
+                  /   p =comment.user_id.username
+
+                = form_for @comment, url:post_comment_index_path(post_id: post.id), method: :post do |f| 
+                  .form-group
+                    = f.text_field :content, autofocus: true, autocomplete: "content", class: 'form-control input-md-3'
+                      br
+                    =f.submit "comment", class: 'btn btn-primary'  
+                    
+                /  = link_to like_index_path(post.id), method: :post,class: 'btn btn-primary'do
+                /   | like
+                /   i.fa.fa-thumbs-up
+                /   i =post.id
       
-        h2 =post.title
-        p =post.content
-        - if post.cover_image.attached?
-          = image_tag  post.cover_image, heigh:"300px", width:"350px" 
-        p 
-          = link_to 'View details »',post , class: 'btn btn-secondary' 
-          button.btn.btn-primary
-            a like
-            i.fa.fa-thumbs-up
-          button.btn.btn-danger
-            a bookmark
-            i.fa.fa-heart aria-hidden="true"
-      
-   
