@@ -19,11 +19,12 @@ Rails.application.routes.draw do
     # post 'post/comfirm', to: 'post#pulic_post', as: :admin_confirm_ok
     resources :post do
       resources :comment
+      resources :like, only: [:create]
+
     end
     namespace :standard do
       resources :home
     end
-    resources :like, only: [:create]
     resources :book_mark, only: [:create]
     resources :comment, only: [:create]
 
