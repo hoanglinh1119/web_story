@@ -1,15 +1,13 @@
 = javascript_pack_tag "home_page" 
-.ftco-section
-  .container  
-   .row.px-md-4  
+.container  
+  .row 
     - @post.each do |post|
-      .col-md-12
+      .col-md-6
           .blog-entry.ftco-animate.d-md-flex.fadeInUp.ftco-animated
             - if post.cover_image.attached?
-              = image_tag  post.cover_image, class:'img img-2' 
+              = image_tag  post.cover_image, heigh:"250px", width:"300px" 
               .text.text-2.pl-md-4
-                a#id =post.id 
-                h3.mb-2
+                h4.mb-2
                   a = post.title
                 .meta-wrap
                   p.meta
@@ -27,7 +25,6 @@
                       i.fa.fa-comment
                       | comment : 
                       = post.comments.count
-                    
                 p.mb-4 
                 = link_to 'View details »', post, class: 'btn btn-secondary'
 
@@ -45,6 +42,9 @@
                   .form-group
                     = f.text_field :content, autofocus: true, autocomplete: "content", class: 'form-control input-md-3'
                       br
-                    =f.submit "comment", class: 'btn btn-primary'  
+                    =f.submit "comment", class: 'btn btn-primary' 
+  .row
+    .col-md-4
+      == pagy_bootstrap_nav(@pagy) 
 
   

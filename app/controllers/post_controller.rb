@@ -4,7 +4,7 @@ class PostController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   layout 'page'
   def index
-    @post = Post.all.where(status_active: 'active')
+    @pagy, @post = pagy(Post.all.where(status_active: 'active'), items: 2)
     @comment =Comment.new
   end
 

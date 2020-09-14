@@ -4,6 +4,7 @@ require("@rails/activestorage").start()
 require("channels") // ActionCable
 require("bootstrap")
 require('jquery')
+import 'bootstrap'
 import '../stylesheets/application.scss'
 import "@fortawesome/fontawesome-free/js/all";
 // BEGIN: Import fontawesome svg

@@ -2,7 +2,7 @@ class Standard::HomeController < ApplicationController
   before_action :authenticate_user!
   layout 'page'
   def index
-    @post = Post.all.where(status_active: 'active')
+    @pagy, @post = pagy(Post.all.where(status_active: 'active'), items: 3)
     @comment = Comment.new
     # @comment_list = Comment.all.where(post_id: @post.id)
   end
