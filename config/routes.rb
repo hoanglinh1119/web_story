@@ -20,12 +20,12 @@ Rails.application.routes.draw do
     resources :post do
       resources :comment
       resources :like, only: [:create]
-
+    resources :book_mark, only: [:create]
     end
+    
     namespace :standard do
       resources :home
     end
-    resources :book_mark, only: [:create]
     resources :comment, only: [:create]
 
 root "standard/home#index"

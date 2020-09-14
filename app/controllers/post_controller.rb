@@ -1,10 +1,10 @@
 class PostController < ApplicationController
   before_action :authenticate_user!
   before_action :configure_create_params, only: [:create]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :admin_confirm]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   layout 'page'
   def index
-    @post = Post.all
+    @post = Post.all.where(status_active: 'active')
     @comment =Comment.new
   end
 
@@ -13,7 +13,6 @@ class PostController < ApplicationController
   end
 
   def create
-    render :json
     @post = Post.new(configure_create_params)
     user_signed_in?
     if current_user.role == 'admin'
@@ -57,6 +56,10 @@ class PostController < ApplicationController
 
   def confirm_public_post
     @post = Post.all.where(status_active: 'confirm')
+  end
+
+  def admin_confirm
+
   end
 
   private
